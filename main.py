@@ -4,15 +4,19 @@ from pynput.mouse import Controller, Button
 from pynput.keyboard import Listener, KeyCode
 
 TOOGLE_KEY = KeyCode(char="ü")
+sleep_time = 0.01
+left_click = True
 
 clicking = False
 mouse = Controller()
 
 def clicker():
     while True:
-        if  clicking:
+        if  clicking is True and left_click is True:
             mouse.click(Button.left, 1)
-        time.sleep(0.01)
+        elif clicking is True and left_click is False:
+            mouse.click(Button.right, 1)
+        time.sleep(sleep_time)
 
 def toogle_event(key):
     if key == TOOGLE_KEY:
